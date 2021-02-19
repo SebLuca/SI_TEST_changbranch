@@ -8,6 +8,19 @@ RPAR: ')';
 COMMA: ',';
 PLUS: '+';
 MINUS: '-';
+MULT: '*';
+DIV: '/';
+MOD: '%';
+SEMICOLON: ';';
+EQUALS: '=';
+COLON: ':';
+DO: 'do';
+DONE: 'done';
+LBRA: '[';
+RBRA: ']';
+AS: 'as';
+LTHAN: '<';
+MTHAN: '>';
 
 // Identifiers
 
@@ -26,3 +39,10 @@ COMMENT: '/*' .*? '*/' -> skip;
 
 NEWLINE: '\r'? '\n'  -> skip ;
 WS: [ \t]+ -> skip ;
+
+//Type
+
+BOOLEAN: 'Bool';
+INTEGER: 'Int';
+SQUARE: 'Case';
+VOID: 'nil';
