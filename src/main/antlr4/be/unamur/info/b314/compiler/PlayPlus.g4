@@ -7,72 +7,91 @@ root: instruction+;
 instruction: AFFECT LPAR ID COMMA expression RPAR   #affectInstr
            ;
 
-
 expression: NUMBER                                  #constantExpr
           | ID                                      #variableExpr
-          | left=expression op= (PLUS|MINUS) right=expression   #plusMinusExpr
+          | left=expression op=(PLUS|MINUS) right=expression   #plusMinusExpr
           ;
-scalar: BOOLEAN | INTEGER | SQUARE
+
+//p20 à voir avec l'autre règle instruction
+instruction: SKIP
+           | IF exprD THEN instuction+ DONE
+           | IF exprD THEN instruction+ ELSE instruction+ DONE
+           | WHILE  exprD DO instruction+ DONE
+           | SET exprG TO exprD
+           | Compute exprD
+           | NEXT action
+           ;
+
+
+// p24 importation d'un fichier d'initialisation
+impDecl: '#' IMPORT fileDecl;
+
+fileDecl: fileName WLD;
+
+fileName: LETTER (DIGIT |LETTER )*;
+
+// p25 description du programme
+programme : DECLARE AND RETAIN
+(varDecl SEMICOLON | fctDecl)*
+(instruction)*
+clauseDefault;
+
+//p25 clause default
+clauseDefault : BY DEFAULT // ou by default
+    (DECLARE LOCAL(varDecl SEMICOLON)+)?
+    DO (instruction)+ DONE;
+
+//page 13 déclaration de variables
+varDecl : ID AS type;
+
+//page 13 type, scalar, array
+type : scalar | array
+     ;
+scalar : BOOLEAN | INTEGER | SQUARE
+       ;
+array : scalar RBRA (DIGIT)+ (COMMA(DIGIT)+)? LPAR
       ;
 
-array: scalar LBRA (DIGIT)+ (COMMA(DIGIT)+)? RBRA
-     ;
+//page 22 déclaration de fonctions
+fctDecl : ID AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID)
+    (DECLARE LOCAL(varDecl SEMICOLON)+)?
+    DO (instruction)+ RETURN (exprD| VOID) DONE;
 
-type: scalar | array
-    ;
+//page 14 expressions droites
+exprD : exprEnt
+      | exprBool
+      | exprCase
+      | exprG
+      | ID LPAR (exprD(COMMA exprD)*)?RPAR
+      | LPAR exprD RPAR
+      ;
 
-vardecl: ID AS type
-       ;
-exprent: INTEGER
-       | LATITUDE | LONGITUDE | GRID SIZE //TODO define LATITUDE LONGITUDE GRID SIZE
-       | (MAP | RADIO | AMMO | FRUITS | SODA) COUNT //TODO define MAP RADIO AMMO FRUITS SODA
-       | LIFE //TODO define LIFE
-       | exprd PLUS exprd
-       | exprd MINUS exprd
-       | exprd MULT exprd
-       | exprd DIV exprd
-       | exprd MOD exprd
-       ;
-
-exprbool: TRUE | FALSE //TODO define TRUE FALSE
-        | ENNEMI IS ( NORTH | SOUTH | EAST | WEST) //TODO define ENNEMI IS NORTH SOUTH EAST WEST
-        | GRAAL IS ( NORTH | SOUTH | EAST | WEST) //TODO define GRAAL
-        | exprd AND exprd //TODO define AND
-        | exprd OR exprd //TODO define OR
-        | NOT exprd //TODO define NOT
-        | exprd LTHAN exprd
-        | exprd MTHAN exprd
-        | exprd EQUALS exprd
+//page 15 expressions entières
+exprEnt : INTEGER
+        | LATITUDE | LOGITUDE | GRID SIZE
+        |(MAP|RADIO|AMMO|FRUITS|SODA) COUNT
+        | LIFE
+        |exprD PLUS exprD
+        |exprD MINUS exprD
+        |exprD MULT exprD
+        |exprD DIV exprD
+        |exprD MOD exprD
         ;
 
-exprcase: DIRT | ROCK | VINES | ZOMBIE | PLAYER | ENNEMI | MAP | RADIO | AMMO | FRUITS | SODA | GRAAL | NEARBY LBRA exprd COMMA exprd RBRA //TODO define DIRT ROCK VINES ZOMBIE PLAYER NEARBY
+//p17 expressions booléennes
+exprBool : TRUE | FALSE
+        | ENNEMI IS (NORTH | SOUTH | EAST| WEST)
+        | GRAAL IS (NORTH | SOUTH| EAST| WEST)
+        | exprD AND exprD
+        | exprD OR exprD
+        | NOT exprD
+        | exprD LTHAN exprD
+        | exprD MTHAN exprD
+        | exprD EQUALS exprD
         ;
-
-
-exprd: exprent
-     | exprbool
-     | ExprCase
-     | ExprG
-     | ID( (exprd (COMMA exprd)*)? )
-     | (exprd)
-     ;
-
-fctdecl: ID AS function ( (vardecl (COMMA vardecl)*)? )COLON ( scalar | VOID) //TODO declare function
-       |(declare local (vardecl SEMICOLON)+) ? //TODO define declare local
-       |DO (instruction)+ RETURN (exprd | VOID) DONE //TODO void
-       ;
-
-programme: declare and retain //TODO define declare and retain
-         | LPAR vardecl SEMICOLON | fctdecl RPAR *
-         | LPAR instruction RPAR *
-         | clausedefault
-         ;
-
-
-clausedefault: by default //TODO define by default
-             |LPAR declare local LPAR vardecl SEMICOLON RPAR + RPAR ?
-             |DO LPAR instruction RPAR + DONE
-             ;
-
+//p18 expressions types cases
+exprCase : DIRT | ROCK | VINES | ZOMBIE | PLAYER | ENNEMI | MAP | RADIO | AMMO | FRUITS | SODA
+           | GRAAL | NEARBY LBRA exprD COMMA exprD RBRA
+           ;
 
 

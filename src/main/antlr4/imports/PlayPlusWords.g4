@@ -8,19 +8,17 @@ RPAR: ')';
 COMMA: ',';
 PLUS: '+';
 MINUS: '-';
-MULT: '*';
-DIV: '/';
 MOD: '%';
+MULT:'*';
+DIV:'/';
 SEMICOLON: ';';
-EQUALS: '=';
+EQUALS:'=';
 COLON: ':';
-DO: 'do';
-DONE: 'done';
-LBRA: '[';
+LTHAN:'<';
+MTHAN:'>';
+LBRA:'[';
 RBRA: ']';
-AS: 'as';
-LTHAN: '<';
-MTHAN: '>';
+WLD: '.wld';
 
 // Identifiers
 
@@ -40,9 +38,23 @@ COMMENT: '/*' .*? '*/' -> skip;
 NEWLINE: '\r'? '\n'  -> skip ;
 WS: [ \t]+ -> skip ;
 
-//Type
 
+DECLARE:'declare';
+AND : 'and';
+RETAIN : 'retain';
+BY: 'by';
+DEFAULT:'default';
+LOCAL: 'local';
+DO:'do';
+DONE:'done';
+AS:'as';
+
+// à verifier
 BOOLEAN: 'Bool';
-INTEGER: 'Int';
-SQUARE: 'Case';
+INTEGER:'Int';
+SQUARE:'Case';
 VOID: 'nil';
+
+
+
+
