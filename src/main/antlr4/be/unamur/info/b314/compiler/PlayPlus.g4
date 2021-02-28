@@ -4,9 +4,6 @@ import PlayPlusWords;
 
 root: instruction+;
 
-instruction: AFFECT LPAR ID COMMA expression RPAR   #affectInstr
-           ;
-
 expression: NUMBER                                  #constantExpr
           | ID                                      #variableExpr
           | left=expression op=(PLUS|MINUS) right=expression   #plusMinusExpr
@@ -14,21 +11,24 @@ expression: NUMBER                                  #constantExpr
 
 //p20 à voir avec l'autre règle instruction
 instruction: SKIP
-           | IF exprD THEN instuction+ DONE
+           | IF exprD THEN instruction+ DONE
            | IF exprD THEN instruction+ ELSE instruction+ DONE
            | WHILE  exprD DO instruction+ DONE
            | SET exprG TO exprD
-           | Compute exprD
+           | COMPUTE exprD
            | NEXT action
            ;
 
 
 // p24 importation d'un fichier d'initialisation
-impDecl: '#' IMPORT fileDecl;
+impDecl: '#' IMPORT fileDecl
+       ;
 
-fileDecl: fileName WLD;
+fileDecl: fileName WLD
+        ;
 
-fileName: LETTER (DIGIT |LETTER )*;
+
+fileName: LETTER (DIGIT | LETTER )*;
 
 // p25 description du programme
 programme : DECLARE AND RETAIN
@@ -57,6 +57,10 @@ fctDecl : ID AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID
     (DECLARE LOCAL(varDecl SEMICOLON)+)?
     DO (instruction)+ RETURN (exprD| VOID) DONE;
 
+exprG : ID
+      | ID LBRA exprD(COMMA exprD)? RBRA
+      ;
+
 //page 14 expressions droites
 exprD : exprEnt
       | exprBool
@@ -68,7 +72,7 @@ exprD : exprEnt
 
 //page 15 expressions entières
 exprEnt : INTEGER
-        | LATITUDE | LOGITUDE | GRID SIZE
+        | LATITUDE | LONGITUDE | GRID SIZE
         |(MAP|RADIO|AMMO|FRUITS|SODA) COUNT
         | LIFE
         |exprD PLUS exprD
@@ -93,5 +97,9 @@ exprBool : TRUE | FALSE
 exprCase : DIRT | ROCK | VINES | ZOMBIE | PLAYER | ENNEMI | MAP | RADIO | AMMO | FRUITS | SODA
            | GRAAL | NEARBY LBRA exprD COMMA exprD RBRA
            ;
-
+action : MOVE ( NORTH | SOUTH | EAST | WEST)
+       | SHOOT ( NORTH | SOUTH | EAST | WEST)
+       | USE ( MAP | RADIO | FRUITS | SODA )
+       | DO NOTHING
+       ;
 

@@ -19,11 +19,54 @@ MTHAN:'>';
 LBRA:'[';
 RBRA: ']';
 WLD: '.wld';
+COMPUTE: 'compute';
+IF:'if';
+THEN:'then';
+ELSE:'else';
+WHILE:'while';
+SET:'set';
+TO:'to';
+NEXT:'next';
+IMPORT:'import';
+FUNCTION:'function';
+RETURN:'return';
+LATITUDE:'latitude';
+LONGITUDE:'longitude';
+GRID:'grid';
+SIZE:'size';
+MAP:'map';
+RADIO:'radio';
+AMMO:'ammo';
+FRUITS:'fruits';
+SODA:'soda';
+COUNT:'count';
+LIFE:'life';
+TRUE:'true';
+FALSE:'false';
+ENNEMI:'ennemi';
+IS:'is';
+NORTH:'north';
+SOUTH:'south';
+EAST:'east';
+WEST:'west';
+GRAAL:'graal';
+OR:'or';
+NOT:'not';
+DIRT:'dirt';
+ROCK:'rock';
+VINES:'vines';
+ZOMBIE:'zombie';
+PLAYER:'player';
+NEARBY:'nearby';
+MOVE:'move';
+SHOOT:'shoot';
+USE:'use';
+NOTHING:'nothing';
 
 // Identifiers
 
 ID: LETTER (LETTER | DIGIT)* ;
-
+FILENAME: LETTER (DIGIT | LETTER)*;
 NUMBER: (DIGIT)+;
 
 fragment LETTER: 'A'..'Z' | 'a'..'z' ;
