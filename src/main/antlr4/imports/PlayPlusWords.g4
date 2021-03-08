@@ -62,7 +62,6 @@ MOVE:'move';
 SHOOT:'shoot';
 USE:'use';
 NOTHING:'nothing';
-
 // Identifiers
 
 ID: LETTER (LETTER | DIGIT)* ;
