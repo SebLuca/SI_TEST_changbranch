@@ -4,11 +4,6 @@ import PlayPlusWords;
 
 root: instruction+;
 
-expression: NUMBER                                  #constantExpr
-          | ID                                      #variableExpr
-          | left=expression op=(PLUS|MINUS) right=expression   #plusMinusExpr
-          ;
-
 //p20 à voir avec l'autre règle instruction
 instruction: SKIP
            | WHILE  exprD DO instruction+ DONE
@@ -19,7 +14,7 @@ instruction: SKIP
 
 
 // p24 importation d'un fichier d'initialisation
-impDecl: '#' IMPORT fileDecl
+impDecl: IMPORT fileDecl
        ;
 
 fileDecl: fileName WLD
