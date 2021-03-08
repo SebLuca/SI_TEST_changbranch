@@ -2,12 +2,7 @@ grammar PlayPlus;
 
 import PlayPlusWords;
 
-root: instruction+;
-
-expression: NUMBER                                  #constantExpr
-          | ID                                      #variableExpr
-          | left=expression op=(PLUS|MINUS) right=expression   #plusMinusExpr
-          ;
+root: programme | impDecl ;
 
 //p20 à voir avec l'autre règle instruction
 instruction: SKIP
@@ -17,9 +12,8 @@ instruction: SKIP
            | NEXT action
            ;
 
-
 // p24 importation d'un fichier d'initialisation
-impDecl: '#' IMPORT fileDecl
+impDecl: IMPORT fileDecl
        ;
 
 fileDecl: fileName WLD

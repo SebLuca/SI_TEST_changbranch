@@ -2,7 +2,7 @@ grammar PlayPlus;
 
 import PlayPlusWords;
 
-root: instruction+;
+root: programme | impDecl ;
 
 //p20 à voir avec l'autre règle instruction
 instruction: SKIP
@@ -11,7 +11,6 @@ instruction: SKIP
            | COMPUTE exprD
            | NEXT action
            ;
-
 
 // p24 importation d'un fichier d'initialisation
 impDecl: IMPORT fileDecl
