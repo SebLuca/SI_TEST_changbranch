@@ -39,9 +39,7 @@ clauseDefault : BY DEFAULT // ou by default
     DO (instruction)+ DONE;
 
 //page 13 déclaration de variables
-varDecl : id AS type;
-
-id : LETTER ( DIGIT | LETTER )*;
+varDecl : ID AS type;
 
 //page 13 type, scalar, array
 type : scalar | array
@@ -52,7 +50,7 @@ array : scalar LBRA (DIGIT)+ (COMMA(DIGIT)+)? RBRA
       ;
 
 //page 22 déclaration de fonctions
-fctDecl : id AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID)
+fctDecl : ID AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID)
     (DECLARE LOCAL(varDecl SEMICOLON)+)?
     DO (instruction)+ RETURN (exprD| VOID) DONE;
 
@@ -79,7 +77,7 @@ exprD : exprEnt
       | exprD EQUALS exprD
       | exprCase
       | exprG
-      | id LPAR (exprD(COMMA exprD)*)?RPAR
+      | ID LPAR (exprD(COMMA exprD)*)?RPAR
       | LPAR exprD RPAR
       ;
 
