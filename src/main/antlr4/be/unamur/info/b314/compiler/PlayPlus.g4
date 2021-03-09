@@ -10,10 +10,10 @@ instruction: SKIPA
 //           | IF exprD THEN instruction+ DONE  pour 2ème remise
 //           | IF exprD THEN instruction+ ELSE instruction+ DONE   pour 2ème remise
 //           | WHILE  exprD DO instruction+ DONE    pour 2ème remise
-           | SET exprG TO exprD
-           | COMPUTE exprD
-           | NEXT action
-           ;
+            | SET exprG TO exprD
+            | COMPUTE exprD
+            | NEXT action
+            ;
 
 // p24 importation d'un fichier d'initialisation
 
@@ -45,8 +45,10 @@ varDecl : ID AS type;
 //page 13 type, scalar, array
 type : scalar | array
      ;
+
 scalar : BOOLEAN | INTEGER | SQUARE
        ;
+
 array : scalar LBRA (DIGIT)+ (COMMA(DIGIT)+)? RBRA
       ;
 
@@ -59,7 +61,6 @@ fctDecl : ID AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID
 //p19 expression gauche
 exprG : ID
       | ID LBRA exprD(COMMA exprD)? RBRA
-
       ;
 
 //page 14 expressions droites
@@ -84,7 +85,7 @@ exprD : exprEnt
 
 
 //page 15 expressions entières
-exprEnt : INTEGER
+exprEnt : NUMBER
         | LATITUDE | LONGITUDE | GRID SIZE
         | (MAP|RADIO|AMMO|FRUITS|SODA) COUNT
         | LIFE

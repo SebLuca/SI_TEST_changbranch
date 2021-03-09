@@ -75,7 +75,7 @@ BY: 'by';
 DEFAULT:'default';
 LOCAL: 'local';
 DO:'do';
-DONE:'done';    
+DONE:'done';
 WHEN:'when';
 YOUR:'your';
 TURN:'turn';
@@ -94,7 +94,7 @@ VOID: 'void';
 FILEDECL: FILENAME WLD;
 ID: LETTER (LETTER | DIGIT)* ;
 FILENAME: LETTER (DIGIT | LETTER)*;
-NUMBER: (DIGIT)+;
+NUMBER: (MINUS) ? (DIGIT)+;
 
 fragment LETTER: 'A'..'Z' | 'a'..'z' ;
 fragment DIGIT: '0'..'9' ;
