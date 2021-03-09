@@ -2,10 +2,11 @@ lexer grammar PlayPlusWords;
 
 // Comments -> ignored
 
-COMMENT: '/*' (.*)?'*/' -> skip;
-
+COMMENT : '/*' (.*) '*/' -> skip;
+SKIPA : 'skip';
 // Words
 
+ARENA:'arena';
 AFFECT: 'affect';
 LPAR: '(';
 RPAR: ')';
@@ -88,7 +89,6 @@ VOID: 'void';
 // Identifiers
 
 FILEDECL: FILENAME WLD;
-
 ID: LETTER (LETTER | DIGIT)* ;
 FILENAME: LETTER (DIGIT | LETTER)*;
 NUMBER: (DIGIT)+;
@@ -102,6 +102,9 @@ fragment DIGIT: '0'..'9' ;
 
 NEWLINE: '\r'? '\n'  -> skip ;
 WS: [ \t]+ -> skip ;
+
+
+
 
 
 

@@ -5,16 +5,10 @@ import PlayPlusWords;
 
 root: programme|instruction+;
 
-expression: NUMBER                                  #constantExpr
-          | ID                                      #variableExpr
-          | left=expression op=(PLUS|MINUS) right=expression   #plusMinusExpr
-          ;
-
-
 //p20 à voir avec l'autre règle instruction
-instruction: SKIP
+instruction: SKIPA
 //           | IF exprD THEN instruction+ DONE  pour 2ème remise
-//           | IF exprD THEN instruction+ ELSE instruction+ DONE    pour 2ème remise
+//           | IF exprD THEN instruction+ ELSE instruction+ DONE   pour 2ème remise
 //           | WHILE  exprD DO instruction+ DONE    pour 2ème remise
            | SET exprG TO exprD
            | COMPUTE exprD
@@ -109,7 +103,6 @@ exprCase : DIRT | ROCK | VINES | ZOMBIE | PLAYER | ENNEMI | MAP | RADIO | AMMO |
            ;
 
 //p20 action
-
 action : MOVE ( NORTH | SOUTH | EAST | WEST)
        | SHOOT ( NORTH | SOUTH | EAST | WEST)
        | USE ( MAP | RADIO | FRUITS | SODA )
@@ -117,5 +110,4 @@ action : MOVE ( NORTH | SOUTH | EAST | WEST)
        ;
 
 //p28 commentaires
-commentaires : COMMENT;
-
+comment: COMMENT;
