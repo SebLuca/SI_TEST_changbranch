@@ -2,12 +2,14 @@ grammar PlayPlus;
 
 import PlayPlusWords;
 
+
 root: programme|instruction+;
 
 expression: NUMBER                                  #constantExpr
           | ID                                      #variableExpr
           | left=expression op=(PLUS|MINUS) right=expression   #plusMinusExpr
           ;
+
 
 //p20 à voir avec l'autre règle instruction
 instruction: SKIP
@@ -19,12 +21,13 @@ instruction: SKIP
            | NEXT action
            ;
 
-
 // p24 importation d'un fichier d'initialisation
-impDecl: IMPORT FILEDECL
-       ;
 
-fileDecl: fileName WLD
+impDecl: IMPORT FILEDECL;
+
+
+
+fileDecl: fileName.WLD
         ;
 
 
@@ -42,24 +45,28 @@ clauseDefault : BY DEFAULT // ou by default
     DO (instruction)+ DONE;
 
 //page 13 déclaration de variables
-varDecl : ID AS type;
+varDecl : id AS type;
+
+id : LETTER ( DIGIT | LETTER )*;
 
 //page 13 type, scalar, array
 type : scalar | array
      ;
 scalar : BOOLEAN | INTEGER | SQUARE
        ;
-array : scalar RBRA (DIGIT)+ (COMMA(DIGIT)+)? LPAR
+array : scalar LBRA (DIGIT)+ (COMMA(DIGIT)+)? RBRA
       ;
 
 //page 22 déclaration de fonctions
-fctDecl : ID AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID)
+fctDecl : id AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID)
     (DECLARE LOCAL(varDecl SEMICOLON)+)?
     DO (instruction)+ RETURN (exprD| VOID) DONE;
+
 
 //p19 expression gauche
 exprG : ID
       | ID LBRA exprD(COMMA exprD)? RBRA
+
       ;
 
 //page 14 expressions droites
@@ -78,7 +85,7 @@ exprD : exprEnt
       | exprD EQUALS exprD
       | exprCase
       | exprG
-      | ID LPAR (exprD(COMMA exprD)*)?RPAR
+      | id LPAR (exprD(COMMA exprD)*)?RPAR
       | LPAR exprD RPAR
       ;
 
@@ -95,12 +102,14 @@ exprBool : TRUE | FALSE
          | ENNEMI IS (NORTH | SOUTH | EAST| WEST)
          | GRAAL IS (NORTH | SOUTH| EAST| WEST)
          ;
+
 //p18 expressions types cases
 exprCase : DIRT | ROCK | VINES | ZOMBIE | PLAYER | ENNEMI | MAP | RADIO | AMMO | FRUITS | SODA
            | GRAAL | NEARBY LBRA exprD COMMA exprD RBRA
            ;
 
 //p20 action
+
 action : MOVE ( NORTH | SOUTH | EAST | WEST)
        | SHOOT ( NORTH | SOUTH | EAST | WEST)
        | USE ( MAP | RADIO | FRUITS | SODA )
