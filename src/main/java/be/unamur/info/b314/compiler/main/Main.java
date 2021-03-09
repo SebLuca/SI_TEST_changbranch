@@ -7,8 +7,8 @@ import be.unamur.info.b314.compiler.PlayPlusParser;
 
 
 import be.unamur.info.b314.compiler.NBCPrinter;
-import be.unamur.info.b314.compiler.NBCVisitor;
-import be.unamur.info.b314.compiler.SymTableFiller;
+//import be.unamur.info.b314.compiler.NBCVisitor;
+//import be.unamur.info.b314.compiler.SymTableFiller;
 import be.unamur.info.b314.compiler.exception.ParsingException;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -18,7 +18,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Map;
 
-import be.unamur.info.b314.compiler.SymTableFiller;
+//import be.unamur.info.b314.compiler.SymTableFiller;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.RecognitionException;
@@ -202,25 +202,25 @@ public class Main {
         }
         return tree;
     }
-
-    /**
-     * Builds symbol table from AST.
-     */
-    private Map<String, Integer> fillSymTable(PlayPlusParser.RootContext tree) {
-        SymTableFiller filler = new SymTableFiller();
-        ParseTreeWalker walker = new ParseTreeWalker();
-        walker.walk(filler, tree);
-        return filler.getSymTable();
-    }
-
-
-    private void printNBCCode(PlayPlusParser.RootContext tree, Map<String, Integer> symTable) throws FileNotFoundException {
-
-        NBCPrinter printer = new NBCPrinter("nbcCode.nbc");
-        NBCVisitor visitor = new NBCVisitor(symTable, printer);
-        tree.accept(visitor);
-        printer.flush();
-        printer.close();
-    }
+//
+//    /**
+//     * Builds symbol table from AST.
+//     */
+//    private Map<String, Integer> fillSymTable(PlayPlusParser.RootContext tree) {
+//        SymTableFiller filler = new SymTableFiller();
+//        ParseTreeWalker walker = new ParseTreeWalker();
+//        walker.walk(filler, tree);
+//        return filler.getSymTable();
+//    }
+//
+//
+//    private void printNBCCode(PlayPlusParser.RootContext tree, Map<String, Integer> symTable) throws FileNotFoundException {
+//
+//        NBCPrinter printer = new NBCPrinter("nbcCode.nbc");
+//        NBCVisitor visitor = new NBCVisitor(symTable, printer);
+//        tree.accept(visitor);
+//        printer.flush();
+//        printer.close();
+//    }
 
 }
