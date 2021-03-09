@@ -59,7 +59,7 @@ type : scalar | array
 scalar : BOOLEAN | INTEGER | SQUARE
        ;
 
-array : scalar LBRA (DIGIT)+ (COMMA(DIGIT)+)? RBRA
+array : scalar LBRA (NUMBER) (COMMA(NUMBER))? RBRA
       ;
 
 //page 22 déclaration de fonctions
