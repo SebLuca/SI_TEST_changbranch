@@ -6,7 +6,6 @@ COMMENT : '/*' (.*) '*/' -> skip;
 SKIPA : 'skip';
 // Words
 
-ARENA:'arena';
 AFFECT: 'affect';
 LPAR: '(';
 RPAR: ')';
