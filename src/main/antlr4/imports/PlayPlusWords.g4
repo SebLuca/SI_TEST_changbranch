@@ -1,5 +1,9 @@
 lexer grammar PlayPlusWords;
 
+// Comments -> ignored
+
+COMMENT: '/*' (.*)?'*/' -> skip;
+
 // Words
 
 AFFECT: 'affect';
@@ -62,26 +66,7 @@ MOVE:'move';
 SHOOT:'shoot';
 USE:'use';
 NOTHING:'nothing';
-
-// Identifiers
-
-ID: LETTER (LETTER | DIGIT)* ;
-FILENAME: LETTER (DIGIT | LETTER)*;
-NUMBER: (DIGIT)+;
-
-fragment LETTER: 'A'..'Z' | 'a'..'z' ;
-fragment DIGIT: '0'..'9' ;
-
-// Comments -> ignored
-
-COMMENT: '/*' .*? '*/' -> skip;
-
-// Whitespaces -> ignored
-
-NEWLINE: '\r'? '\n'  -> skip ;
-WS: [ \t]+ -> skip ;
-
-
+AS:'as';
 DECLARE:'declare';
 AND : 'and';
 RETAIN : 'retain';
@@ -90,13 +75,33 @@ DEFAULT:'default';
 LOCAL: 'local';
 DO:'do';
 DONE:'done';
-AS:'as';
 
-// à verifier
-BOOLEAN: 'Bool';
-INTEGER:'Int';
-SQUARE:'Case';
-VOID: 'nil';
+BOOLEAN: 'boolean';
+INTEGER:'integer';
+SQUARE:'square';
+
+
+VOID: 'void';
+
+
+
+// Identifiers
+
+FILEDECL: FILENAME WLD;
+
+ID: LETTER (LETTER | DIGIT)* ;
+FILENAME: LETTER (DIGIT | LETTER)*;
+NUMBER: (DIGIT)+;
+
+fragment LETTER: 'A'..'Z' | 'a'..'z' ;
+fragment DIGIT: '0'..'9' ;
+
+
+
+// Whitespaces -> ignored
+
+NEWLINE: '\r'? '\n'  -> skip ;
+WS: [ \t]+ -> skip ;
 
 
 

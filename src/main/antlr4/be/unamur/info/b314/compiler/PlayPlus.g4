@@ -2,7 +2,7 @@ grammar PlayPlus;
 
 import PlayPlusWords;
 
-root: instruction+;
+root: programme|instruction+;
 
 expression: NUMBER                                  #constantExpr
           | ID                                      #variableExpr
@@ -21,7 +21,7 @@ instruction: SKIP
 
 
 // p24 importation d'un fichier d'initialisation
-impDecl: '#' IMPORT fileDecl
+impDecl: IMPORT FILEDECL
        ;
 
 fileDecl: fileName WLD
@@ -57,49 +57,56 @@ fctDecl : ID AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID
     (DECLARE LOCAL(varDecl SEMICOLON)+)?
     DO (instruction)+ RETURN (exprD| VOID) DONE;
 
+//p19 expression gauche
 exprG : ID
       | ID LBRA exprD(COMMA exprD)? RBRA
       ;
 
 //page 14 expressions droites
 exprD : exprEnt
+      | exprD PLUS exprD
+      | exprD MINUS exprD
+      | exprD MULT exprD
+      | exprD DIV exprD
+      | exprD MOD exprD
       | exprBool
+      | exprD AND exprD
+      | exprD OR exprD
+      | NOT exprD
+      | exprD LTHAN exprD
+      | exprD MTHAN exprD
+      | exprD EQUALS exprD
       | exprCase
       | exprG
       | ID LPAR (exprD(COMMA exprD)*)?RPAR
       | LPAR exprD RPAR
       ;
 
+
 //page 15 expressions entières
 exprEnt : INTEGER
         | LATITUDE | LONGITUDE | GRID SIZE
-        |(MAP|RADIO|AMMO|FRUITS|SODA) COUNT
+        | (MAP|RADIO|AMMO|FRUITS|SODA) COUNT
         | LIFE
-        |exprD PLUS exprD
-        |exprD MINUS exprD
-        |exprD MULT exprD
-        |exprD DIV exprD
-        |exprD MOD exprD
         ;
 
 //p17 expressions booléennes
 exprBool : TRUE | FALSE
-        | ENNEMI IS (NORTH | SOUTH | EAST| WEST)
-        | GRAAL IS (NORTH | SOUTH| EAST| WEST)
-        | exprD AND exprD
-        | exprD OR exprD
-        | NOT exprD
-        | exprD LTHAN exprD
-        | exprD MTHAN exprD
-        | exprD EQUALS exprD
-        ;
+         | ENNEMI IS (NORTH | SOUTH | EAST| WEST)
+         | GRAAL IS (NORTH | SOUTH| EAST| WEST)
+         ;
 //p18 expressions types cases
 exprCase : DIRT | ROCK | VINES | ZOMBIE | PLAYER | ENNEMI | MAP | RADIO | AMMO | FRUITS | SODA
            | GRAAL | NEARBY LBRA exprD COMMA exprD RBRA
            ;
+
+//p20 action
 action : MOVE ( NORTH | SOUTH | EAST | WEST)
        | SHOOT ( NORTH | SOUTH | EAST | WEST)
        | USE ( MAP | RADIO | FRUITS | SODA )
        | DO NOTHING
        ;
+
+//p28 commentaires
+commentaires : COMMENT;
 
