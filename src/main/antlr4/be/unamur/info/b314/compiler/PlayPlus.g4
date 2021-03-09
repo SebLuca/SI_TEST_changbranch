@@ -13,9 +13,9 @@ expression: NUMBER                                  #constantExpr
 
 //p20 à voir avec l'autre règle instruction
 instruction: SKIP
-           | IF exprD THEN instruction+ DONE
-           | IF exprD THEN instruction+ ELSE instruction+ DONE
-           | WHILE  exprD DO instruction+ DONE
+//           | IF exprD THEN instruction+ DONE  pour 2ème remise
+//           | IF exprD THEN instruction+ ELSE instruction+ DONE    pour 2ème remise
+//           | WHILE  exprD DO instruction+ DONE    pour 2ème remise
            | SET exprG TO exprD
            | COMPUTE exprD
            | NEXT action

@@ -2,8 +2,8 @@ lexer grammar PlayPlusWords;
 
 // Comments -> ignored
 
-COMMENT: '/*' (.*)?'*/' -> skip;
-
+COMMENT : '/*' (.*) '*/' -> skip;
+SKIPA : 'skip';
 // Words
 
 AFFECT: 'affect';
