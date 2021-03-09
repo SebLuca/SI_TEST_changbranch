@@ -20,8 +20,8 @@ LBRA:'[';
 RBRA: ']';
 WLD: '.wld';
 COMPUTE: 'compute';
-IF:'if';
-THEN:'then';
+IF: 'if';
+THEN: 'then';
 ELSE:'else';
 WHILE:'while';
 SET:'set';
@@ -64,7 +64,6 @@ USE:'use';
 NOTHING:'nothing';
 // Identifiers
 
-ID: LETTER (LETTER | DIGIT)* ;
 FILENAME: LETTER (DIGIT | LETTER)*;
 NUMBER: (DIGIT)+;
 

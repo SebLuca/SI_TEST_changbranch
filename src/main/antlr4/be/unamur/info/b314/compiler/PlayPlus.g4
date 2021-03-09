@@ -6,6 +6,8 @@ root: programme | impDecl ;
 
 //p20 à voir avec l'autre règle instruction
 instruction: SKIP
+           | IF exprD THEN instruction+ DONE
+           | IF exprD THEN instruction+ ELSE instruction+ DONE
            | WHILE  exprD DO instruction+ DONE
            | SET exprG TO exprD
            | COMPUTE exprD
@@ -16,7 +18,7 @@ instruction: SKIP
 impDecl: IMPORT fileDecl
        ;
 
-fileDecl: fileName WLD
+fileDecl: fileName.WLD
         ;
 
 
@@ -34,23 +36,25 @@ clauseDefault : BY DEFAULT // ou by default
     DO (instruction)+ DONE;
 
 //page 13 déclaration de variables
-varDecl : ID AS type;
+varDecl : id AS type;
+
+id : LETTER ( DIGIT | LETTER )*;
 
 //page 13 type, scalar, array
 type : scalar | array
      ;
 scalar : BOOLEAN | INTEGER | SQUARE
        ;
-array : scalar RBRA (DIGIT)+ (COMMA(DIGIT)+)? LPAR
+array : scalar LBRA (DIGIT)+ (COMMA(DIGIT)+)? RBRA
       ;
 
 //page 22 déclaration de fonctions
-fctDecl : ID AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID)
+fctDecl : id AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID)
     (DECLARE LOCAL(varDecl SEMICOLON)+)?
     DO (instruction)+ RETURN (exprD| VOID) DONE;
 
-exprG : ID
-      | ID LBRA exprD(COMMA exprD)? RBRA
+exprG : id
+      | id LBRA exprD(COMMA exprD)? RBRA
       ;
 
 //page 14 expressions droites
@@ -69,7 +73,7 @@ exprD : exprEnt
       | exprD EQUALS exprD
       | exprCase
       | exprG
-      | ID LPAR (exprD(COMMA exprD)*)?RPAR
+      | id LPAR (exprD(COMMA exprD)*)?RPAR
       | LPAR exprD RPAR
       ;
 
