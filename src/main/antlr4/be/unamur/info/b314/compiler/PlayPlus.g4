@@ -37,13 +37,17 @@ clauseDefault;
 programmestrat : DECLARE AND RETAIN impDecl?
 (varDecl SEMICOLON | fctDecl)*
 WHEN YOUR TURN
-//(clauseWhen)* pour 2eme remise
+(clauseWhen)*
 clauseDefault;
 
 //p25 clause default
 clauseDefault : BY DEFAULT // ou by default
     (DECLARE LOCAL(varDecl SEMICOLON)+)?
     DO (instruction)+ DONE;
+
+clauseWhen : WHEN exprD
+            (DECLARE LOCAL (varDecl SEMICOLON)+)?
+            DO (instruction)+ DONE;
 
 //page 13 déclaration de variables
 varDecl : ID AS type;
