@@ -9,7 +9,7 @@ root: DECLARE AND RETAIN programmestrat | programmemonde;
 instruction: SKIPA
 //           | IF exprD THEN instruction+ DONE  pour 2ème remise
 //           | IF exprD THEN instruction+ ELSE instruction+ DONE   pour 2ème remise
-//           | WHILE  exprD DO instruction+ DONE    pour 2ème remise
+            | WHILE exprD DO instruction+ DONE
             | SET exprG TO exprD
             | COMPUTE exprD
             | NEXT action
@@ -59,7 +59,7 @@ type : scalar | array
 scalar : BOOLEAN | INTEGER | SQUARE
        ;
 
-array : scalar LBRA (NUMBER)+ (COMMA(NUMBER)+)? RBRA
+array : scalar LBRA (NUMBER) (COMMA(NUMBER))? RBRA
       ;
 
 //page 22 déclaration de fonctions

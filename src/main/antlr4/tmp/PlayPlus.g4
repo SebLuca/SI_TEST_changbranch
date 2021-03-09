@@ -9,7 +9,7 @@ root: DECLARE AND RETAIN programmestrat | programmemonde;
 instruction: SKIPA
 //           | IF exprD THEN instruction+ DONE  pour 2ème remise
 //           | IF exprD THEN instruction+ ELSE instruction+ DONE   pour 2ème remise
-//           | WHILE  exprD DO instruction+ DONE    pour 2ème remise
+            | WHILE exprD DO instruction+ DONE
             | SET exprG TO exprD
             | COMPUTE exprD
             | NEXT action
