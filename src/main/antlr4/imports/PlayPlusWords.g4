@@ -75,7 +75,10 @@ BY: 'by';
 DEFAULT:'default';
 LOCAL: 'local';
 DO:'do';
-DONE:'done';
+DONE:'done';    
+WHEN:'when';
+YOUR:'your';
+TURN:'turn';
 
 BOOLEAN: 'boolean';
 INTEGER:'integer';

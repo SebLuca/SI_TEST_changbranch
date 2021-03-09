@@ -29,7 +29,8 @@ fileName: LETTER (DIGIT | LETTER )*;
 
 // p25 description du programme
 programme : DECLARE AND RETAIN
-(varDecl SEMICOLON | fctDecl)*
+(varDecl SEMICOLON | fctDecl | impDecl)*
+WHEN YOUR TURN
 (instruction)*
 clauseDefault;
 
