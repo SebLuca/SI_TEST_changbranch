@@ -3,7 +3,7 @@ grammar PlayPlus;
 import PlayPlusWords;
 
 
-root: programmestrat | programmemonde;
+root: DECLARE AND RETAIN programmestrat | programmemonde;
 
 //p20 à voir avec l'autre règle instruction
 instruction: SKIPA
@@ -29,12 +29,12 @@ fileName: LETTER (DIGIT | LETTER )*;
 
 // p25 description du
 
-programmemonde : DECLARE AND RETAIN impDecl?
+programmemonde :
 (varDecl SEMICOLON | fctDecl)*
 (instruction)*
 clauseDefault;
 
-programmestrat : DECLARE AND RETAIN impDecl?
+programmestrat : impDecl?
 (varDecl SEMICOLON | fctDecl)*
 WHEN YOUR TURN
 (clauseWhen)*
