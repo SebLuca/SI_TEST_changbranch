@@ -171,10 +171,10 @@ public class Main {
 //        LOG.debug("Building symbol table");
 //        Map<String, Integer> symTable = fillSymTable(tree);
 //        LOG.debug("Building symbol table: done");
-//        // Print NBC Code
-//        LOG.debug("Printing NBC Code");
-//        printNBCCode(tree, symTable);
-//        LOG.debug("Printing NBC Code: done");
+        // Print NBC Code
+        LOG.debug("Printing NBC Code");
+        printNBCCode(tree, symTable);
+        LOG.debug("Printing NBC Code: done");
 
 
     }
