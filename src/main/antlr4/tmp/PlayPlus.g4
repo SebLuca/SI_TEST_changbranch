@@ -6,13 +6,13 @@ import PlayPlusWords;
 root: DECLARE AND RETAIN (programmestrat | programmemonde);
 
 //p20 à voir avec l'autre règle instruction
-instruction: SKIPA
-            | IF exprD THEN instruction+ DONE
-            | IF exprD THEN instruction+ ELSE instruction+ DONE
-            | WHILE exprD DO instruction+ DONE
-            | SET exprG TO exprD
-            | COMPUTE exprD
-            | NEXT action
+instruction: SKIPA                                               #skipInst
+            | IF exprD THEN instruction+ DONE                    #ifInst
+            | IF exprD THEN instruction+ ELSE instruction+ DONE  #ifElseInst
+            | WHILE exprD DO instruction+ DONE                   #whileInst
+            | SET exprG TO exprD                                 #setInst
+            | COMPUTE exprD                                      #computeInst
+            | NEXT action                                        #actionInst
             ;
 
 // p24 importation d'un fichier d'initialisation
