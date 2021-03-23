@@ -3,7 +3,7 @@ grammar PlayPlus;
 import PlayPlusWords;
 
 
-root: DECLARE AND RETAIN (programmestrat | programmemonde);
+root: DECLARE AND RETAIN (programmestrat | programmemonde | comment);
 
 //p20 à voir avec l'autre règle instruction
 instruction: SKIPA                                               #skipInst
