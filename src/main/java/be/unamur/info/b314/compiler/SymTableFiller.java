@@ -17,12 +17,11 @@ public class SymTableFiller extends PlayPlusBaseListener {
     public SymTableFiller() {
         this.symTable = Maps.newHashMap();
     }
-
-    @Override
+/*    @Override
     public void enterAffectInstr(PlayPlusParser.AffectInstrContext ctx) {
         addVariable(ctx.ID().getText());
     }
-
+*/
     private void addVariable(String var) {
         if (!symTable.containsKey(var)) {
             symTable.put(var, nId);

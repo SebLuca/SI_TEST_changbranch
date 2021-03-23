@@ -10,7 +10,7 @@ instruction: SKIPA                                               #skipInst
             | IF exprD THEN instruction+ DONE                    #ifInst
             | IF exprD THEN instruction+ ELSE instruction+ DONE  #ifElseInst
             | WHILE exprD DO instruction+ DONE                   #whileInst
-            | SET exprG TO exprD                                 #setInst
+            | SET exprG TO exprD                                 #affectInstr
             | COMPUTE exprD                                      #computeInst
             | NEXT action                                        #actionInst
             ;

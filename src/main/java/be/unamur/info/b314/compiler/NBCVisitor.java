@@ -1,13 +1,14 @@
-package be.unamur.info.b314.compiler;
+//package be.unamur.info.b314.compiler;
 
-import be.unamur.info.b314.compiler.NBCPrinter.NBCCodeTypes;
+//import be.unamur.info.b314.compiler.NBCPrinter.NBCCodeTypes;
 
-import java.util.Map;
+//import java.util.Map;
 
 /**
  * Print PCode for a given tree using provided symbol table and printer. This
  * class uses ANTLR visitor mechanism.
  */
+/*
 public class NBCVisitor extends PlayPlusBaseVisitor<Object> {
 
     private final Map<String, Integer> symTable;
@@ -19,41 +20,42 @@ public class NBCVisitor extends PlayPlusBaseVisitor<Object> {
         this.printer = printer;
     }
 
-  //  @Override
+    @Override
     public Object visitRoot(PlayPlusParser.RootContext ctx) {
-       // printer.printSetStackPointer(symTable.size()); // Reserve space for Syntax.variables
+      // printer.printSetStackPointer(symTable.size()); // Reserve space for Syntax.variables
         printer.printComments("Start instructions");
         super.visitRoot(ctx); // Print instructions
         printer.printComments("End instructions");
         printer.printStop(); // Stop execution
         return null;
     }
-
-   // @Override
+*/
+    /*
+   @Override
     public Object visitAffectInstr(PlayPlusParser.AffectInstrContext ctx) {
         String var = ctx.ID().getText();
         /* Here you need to print the instructions  */
-        printer.printLoadAdress(var, 0);
+    /*    printer.printLoadAdress(var, 0);
         ctx.expression().accept(this); // Compute expression
         return null;
     }
 
-  //  @Override
+    @Override
     public Object visitConstantExpr(PlayPlusParser.ConstantExprContext ctx) {
         int value = Integer.parseInt(ctx.NUMBER().getText()); // Get value
         printer.printLoadConstant(NBCCodeTypes.Int, value); // Load constant value
         return null;
     }
 
-   // @Override
+    @Override
     public Object visitVariableExpr(PlayPlusParser.VariableExprContext ctx) {
         String var = ctx.ID().getText();
         printer.printLoad(NBCCodeTypes.Int, var);
         /* Here you need to print the variables  */
-        return null;
+/*        return null;
     }
 
- //   @Override
+    @Override
     public Integer visitPlusMinusExpr(PlayPlusParser.PlusMinusExprContext ctx) {
         String nLeft = ctx.left.getText();
         String nRight = ctx.right.getText();
@@ -72,3 +74,4 @@ public class NBCVisitor extends PlayPlusBaseVisitor<Object> {
     }
 
 }
+*/
