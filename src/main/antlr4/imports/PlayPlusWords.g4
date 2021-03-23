@@ -2,7 +2,7 @@ lexer grammar PlayPlusWords;
 
 // Comments -> ignored
 
-COMMENT : '/*' (.*) '*/' -> skip;
+COMMENT : (('/*' (.*) '*/') | ('//' (.*) NEWLINE)) -> skip;
 SKIPA : 'skip';
 // Words
 

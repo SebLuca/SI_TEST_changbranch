@@ -2,9 +2,11 @@ lexer grammar PlayPlusWords;
 
 // Comments -> ignored
 
-COMMENT : '/*' (.*) '*/' -> skip;
+COMMENT : (('/*' (.*) '*/') | ('//' (.*) NEWLINE)) -> skip;
+NEWLINE : '\r' ? '\n' -> skip;
 SKIPA : 'skip';
 // Words
+
 AFFECT: 'affect';
 LPAR: '(';
 RPAR: ')';
@@ -101,7 +103,6 @@ fragment DIGIT: '0'..'9' ;
 
 // Whitespaces -> ignored
 
-NEWLINE: '\r'? '\n'  -> skip ;
 WS: [ \t]+ -> skip ;
 
 
