@@ -69,28 +69,28 @@ fctDecl : ID AS FUNCTION LPAR (varDecl(COMMA varDecl)*)?RPAR COLON (scalar| VOID
 
 
 //p19 expression gauche
-exprG : ID
-      | ID LBRA exprD(COMMA exprD)? RBRA
+exprG : ID                               #exprIdG
+      | ID LBRA exprD(COMMA exprD)? RBRA #exprArrayG
       ;
 
 //page 14 expressions droites
-exprD : exprEnt
-      | exprD PLUS exprD
-      | exprD MINUS exprD
-      | exprD MULT exprD
-      | exprD DIV exprD
-      | exprD MOD exprD
-      | exprBool
-      | exprD AND exprD
-      | exprD OR exprD
-      | NOT exprD
-      | exprD LTHAN exprD
-      | exprD MTHAN exprD
-      | exprD EQUALS exprD
-      | exprCase
-      | exprG
-      | ID LPAR (exprD(COMMA exprD)*)?RPAR
-      | LPAR exprD RPAR
+exprD : exprEnt                #exprEntD
+      | exprD PLUS exprD       #exprPlusD
+      | exprD MINUS exprD      #exprMinusD
+      | exprD MULT exprD       #exprMultD
+      | exprD DIV exprD        #exprDivD
+      | exprD MOD exprD        #exprModD
+      | exprBool               #expBoolD
+      | exprD AND exprD        #exprAndD
+      | exprD OR exprD         #exprOrD
+      | NOT exprD              #exprNotD
+      | exprD LTHAN exprD      #exprLthanD
+      | exprD MTHAN exprD      #exprMthanD
+      | exprD EQUALS exprD     #exprEqualsD
+      | exprCase               #exprCaseD
+      | exprG                  #exprGaucheD
+      | ID LPAR (exprD(COMMA exprD)*)?RPAR  #exprAppelFonctionD
+      | LPAR exprD RPAR        #exprDroiteD
       ;
 
 
@@ -113,10 +113,10 @@ exprCase : DIRT | ROCK | VINES | ZOMBIE | PLAYER | ENNEMI | MAP | RADIO | AMMO |
            ;
 
 //p20 action
-action : MOVE ( NORTH | SOUTH | EAST | WEST)
-       | SHOOT ( NORTH | SOUTH | EAST | WEST)
-       | USE ( MAP | RADIO | FRUITS | SODA )
-       | DO NOTHING
+action : MOVE ( NORTH | SOUTH | EAST | WEST)  #actionMove
+       | SHOOT ( NORTH | SOUTH | EAST | WEST) #actionShoot
+       | USE ( MAP | RADIO | FRUITS | SODA )  #actionUse
+       | DO NOTHING                           #actionDoNothing
        ;
 
 //p28 commentaires
